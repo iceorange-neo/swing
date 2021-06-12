@@ -1,0 +1,151 @@
+
+
+1、JFrame：是一个容器，是各个组件的载体。一般通过继承java.swing.JFrame来创建窗体
+构造器：
+    new JFrame()
+    new JFrame(String s)    // 有标题
+
+设置JFrame大小的常用实例方法
+    public void setSize(int width, int height)  // 设置窗口大小
+    public void setLocation(int x, int y)    // 设置窗口的位置，默认是(0, 0)    左上角顶端
+    public void setTitle(String s)  // 设置标题
+    public void setBounds(int a, int b, int width, int height)  // 设置窗口的初始位置(a, b) ，宽width、高是height
+    public void setVisible(boolean b)   // 设置窗口的可见性 默认是不可见
+    public void setResizable(boolean b) // 设置窗口是否可调整大小，默认可调整
+    public void dispose()   // 撤销当前窗口，并释放当前窗口使用的资源
+    public void setExtendedState(int state) // 设置窗口的扩展状态，state的可取值常量【MAXIMIZED_HORIZ 水平方向最大化】
+                                            //  MAXIMIZED_VERT（垂直方向最大化）
+
+设置JFrame的关闭方式
+    public void setDefaultCloseOperation(int operation)
+    // operation的可取值   DO_NOTHING_ON_CLOSE（什么也不做）、HIDE_ON_CLOSE(隐藏)、EXIT_ON_CLOSE（结束窗口所在的程序）、DISPOSE_ON_CLOSE（
+    隐藏当前窗口，释放所占有的资源）
+
+
+2、JDialog：继承自java.awt.Dialog  是一个窗体弹出来的另一个窗体。和JFrame类似
+构造器：
+    JDialog()
+    JDialog(Frame f)    // 指定父窗口
+    JDialog(Frame f, String s)  // 指定父窗口+标题
+    一般使用的关闭方式为DEPOSE_ON_CLOSE
+
+
+3、常用面板
+面板是一种Swing常用容器。用来容纳其他的组件，但是这个面板容器必须被添加在一个容器内
+
+JPanel：JPanel是一种最简单的面板，继承自java.awt.Container类   // 容器类
+JScrollPanel：带滚动条的面板，将大组件放到较小的容纳空间中使用这个。【注意：只能添加一个组件】若想添加多个组件，可以将组件添加到JPanel中，将
+                该JPanel添加到JScrollPanel中。
+
+4、常用组件
+标签组件：
+    类：JLabel（用于显示文本或者提示信息）
+        构造器：
+            new JLabel()
+            new JLabel(Icon icon)   // 带图标的
+            new JLabel(Icon icon, int aligment) // 设置图标+水平对其方式
+            new JLabel(String str, int aligment)    // 设置文本+水平对齐方式  LEFT、CENTER、RIGHT
+            new JLabel(String str, Icon icon, int aligment) // 设置文本+图标+水平对齐方式
+
+按钮组件：
+    类：JButton
+        构造器：
+            new JButton()
+            new JButton(String text)    // 指定文字
+            new JButton(Icon icon)      // 指定图标
+            new JButton(String text, Icon icon) // 指定文字+图标
+
+        普通实例方法：
+            public void setTooltipText(String text) // 设置提示文字
+            public void setBorderPainted()      // 设置边界是否显示
+            public void setEnabled(boolean b)            // 设置按钮是否可用
+
+单选按钮：
+    类：JRadioButton和ButtonGroup
+    JRadioButton是一个单选按钮，需要将单选按钮加入到ButtonGroup中
+        构造器：
+            new JRadioButton()
+            new JRadioButton(String text)   // 指定文字
+            new JRadioButton(String text, boolean selected) // 指定文字+是否选中
+
+复选框组件：
+    类：JCheckBox
+        构造器：
+            new JCheckBox()
+            new JCheckBox(Icon icon, boolean checked)   // 指定图标+是否选中
+            new JCheckBox(String text, boolean checked) // 指定文字+是否选中
+
+下拉列表框组件：
+    类： JComboBox
+        构造器：
+            new JComboBox() // 常用
+            new JComboBox(ComboBoxModel dataModel)  // 使用listModel建立一个下拉列表
+            new JComboBox(Object[] arrayData)
+            new JComboBox(Vector vector)
+
+        普通实例方法:
+            addItem // 添加下拉内容
+
+菜单栏：
+    1、创建菜单条 JMenuBar
+    2、创建菜单 JMenu
+    3、创建菜单项 JMenuItem
+        菜单项依赖于菜单、菜单依赖于菜单条
+
+
+文本组件：
+    类：JTextField
+        构造器：
+            new JTextField()
+            new JTextField(String text) // 指定默认文字
+            new JTextField(int fieldWidth)  // 指定文本框长度
+            JTextField(String text, int fieldWidth) // 指定默认文字+文本框长度
+            JTextField(Document docModel, String text, int fieldWidth)  // 指定文本框模式+默认文字+文本框长度
+
+密码框组件：
+    类：JPasswordField
+        构造器：
+            new JPasswordField()
+            new JPasswordField(String str)  // 指定默认文字
+            new JPasswordField(int fieldWidth)  // 指定文本框长度
+            new JPasswordField(String text, int fieldWidth) // 指定默认文字+文本框长度
+            new JPasswordField(Document docModel, String text, int fieldWidth)  // 指定文本框模式+默认文字+文本框长
+
+        常用实例方法：
+            setEchoChar('*')    // 设置图显字符
+
+文本域组件
+    类：JTextArea
+        构造器：
+            new JTextArea()
+            new JTextArea(String text)  // 指定默认文字
+            new JTextArea(int rows, int cols)   // 指定行和列
+            new JTextArea(Document doc) // 指定文本类型
+            new JTextArea(Document doc, String text, int rows, int cols)    // 指定文本类型+默认文字+行+列
+
+        常用实例方法:
+            setLineWrap(boolean b)   // 设置文本域是否自动换行
+
+常用布局：
+    FlowLayout：流布局
+    BorderLayout：边界布局
+    GridLayout：网格布局
+
+常用的时间监听器：
+    一个事件模型中有三个对象：事件源、事件、监听程序
+    事件监听机制：
+        A：事件源   事件发生的地方
+        B：事件     就是要发生的事情
+        C：事件处理 就是针对发生的事做出的处理方案
+        D：事件监听 将事件源和事件关联起来
+
+        事件              事件源                 监听接口                方法
+    -------------------------------------------------------------------------
+        ActionEvent         JButton、JList、JTextField      ActionListener    addActionListener()  removeActionListener()
+        FocusEvent          ComboBox及其派生                FocusListener       addFocusListener()  removeActionListener()
+
+    使用步骤：
+        1、新建一个组件
+        2、将该组件添加到相应的面板（如JFrame）
+        3、注册监听器以及监听事件源产生的监听事件（如通过ActionListener来响应用户点击按钮）
+        4、定义处理事件的方法（如在ActionListenerPerformed中定义相应方法）
